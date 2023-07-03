@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package registration;
+
+service registrationService {
+  rpc Insert(InsertRequest) returns (InsertResponse);
+  rpc Fetch(FetchRequest) returns (FetchResponse);
+  rpc Delete(DeleteRequest) returns (DeleteResponse);
+  rpc Update(UpdateRequest) returns (UpdateResponse);
+
+}
+
+message InsertRequest {
+  string Number_plate = 1;
+  string email = 2;
+  int32 id = 3;
+}
+
+message InsertResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message FetchRequest {}
+
+message FetchResponse{
+    repeated DataEntry data_entries = 1;
+
+}
+
+ 
+message DataEntry {
+    // Define the fields for each data entry
+    // This will depend on the structure of your MySQL data
+    // For example, if you have a table with columns "id", "name", and "age",
+    // you can define the fields as follows:
+    string Number_plate = 1;
+    string email = 2;
+    int32 id = 3;
+}
+
+
+
+message DeleteRequest {
+    string Number_plate = 1;
+ 
+}
+ 
+message DeleteResponse {
+   bool success = 1;
+   string error = 2;
+ 
+}
+
+
+message UpdateRequest {
+    string Number_plate = 1;
+    string email = 2;
+    int32 id = 3;
+    string condition =4;
+}
+  
+message UpdateResponse {
+    bool success = 1;
+    string error = 2;
+  }
